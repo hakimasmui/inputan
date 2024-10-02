@@ -22,6 +22,7 @@ public class Inputan extends LinearLayout {
 
     Locale locale = new Locale("in", "ID");
     DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(locale);
+    String symbolCurrency = decimalFormatSymbols.getCurrencySymbol();
     String thousandSeparator = String.valueOf(decimalFormatSymbols.getGroupingSeparator());
     int before = 0, length = 0;
 
@@ -73,8 +74,8 @@ public class Inputan extends LinearLayout {
                     }
                     cleanStr = cleanStr.startsWith(".") ? cleanStr.substring(1) : cleanStr;
 
-                    cleanStr = cleanStr.replace("Rp", "");
-                    cleanStr = cleanStr.replace(thousandSeparator, "").replaceAll(",,", ",");
+                    cleanStr = cleanStr.replace(symbolCurrency+" ", "");
+                    cleanStr = cleanStr.replace(thousandSeparator, "");
 
                     if (cleanStr.length() > 9) {
                         cleanStr = cleanStr.substring(0, cleanStr.length() - 1);
@@ -82,7 +83,7 @@ public class Inputan extends LinearLayout {
 
                     String formattedString = formatInteger(cleanStr);
                     edt1.removeTextChangedListener(this);
-                    edt1.setText("Rp "+formattedString);
+                    edt1.setText(symbolCurrency+" "+formattedString);
                     if (before == length)
                         edt1.setSelection(edt1.getText().length());
                     else {
@@ -105,6 +106,14 @@ public class Inputan extends LinearLayout {
 
     public String getText() {
         return edt1.getText().toString().trim();
+    }
+
+    public String getTextCurrency() {
+        String cleanStr = edt1.getText().toString().trim();
+        cleanStr = cleanStr.replace(symbolCurrency+" ", "");
+        cleanStr = cleanStr.replace(thousandSeparator, "");
+
+        return cleanStr;
     }
 
     public void setText(String text) {

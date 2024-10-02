@@ -43,7 +43,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.hakimasmui"
             artifactId = "inputan"
-            version = "1.1"
+            version = "1.2"
 
             afterEvaluate {
                 from(components["release"])
