@@ -10,7 +10,7 @@
     <com.hakimasmui.inputan.Inputan
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:inputType="textPassword"
+        app:inputType="text"
         app:label="@string/app_name"
         app:hint="@string/app_name" />
 
