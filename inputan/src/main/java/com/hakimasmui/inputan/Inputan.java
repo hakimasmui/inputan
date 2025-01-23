@@ -46,13 +46,24 @@ public class Inputan extends LinearLayout {
         text1 = v.findViewById(R.id.text1);
         edt1 = v.findViewById(R.id.edt1);
 
+        if (label == null)
+            text1.setVisibility(GONE);
+
+        if (label.isEmpty()) {
+            text1.setVisibility(GONE);
+        } else {
+            text1.setVisibility(VISIBLE);
+        }
+
         text1.setText(label);
         edt1.setHint(hint);
+
         if (inputType == 0) {
             edt1.setInputType(InputType.TYPE_CLASS_NUMBER);
         } else if (inputType == 1) {
             edt1.setInputType(InputType.TYPE_CLASS_TEXT);
         } else if (inputType == 2) {
+            edt1.setInputType(InputType.TYPE_CLASS_NUMBER);
             edt1.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
